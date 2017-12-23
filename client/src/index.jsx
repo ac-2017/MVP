@@ -22,7 +22,7 @@ class App extends React.Component {
       this.setState({
         loading:false
       })
-    },1500)
+    },50)
   }
 
   changeAddress(query) {
@@ -30,7 +30,7 @@ class App extends React.Component {
       method: 'GET',
       url: '/sunrise',
       data: {
-        address: query
+        address: query,
       },
       success: (data) => {
         // this.setState({
@@ -47,7 +47,7 @@ class App extends React.Component {
           this.setState({
             loading:false
           })
-        },1500)
+        },50)
       },
 
     })

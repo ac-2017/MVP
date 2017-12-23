@@ -22,25 +22,29 @@
 body {
 	font-size:10px;
 	background: #2980b9;
+	padding:0;
 }
 
 .AddressPage {
 	font-family: 'Roboto' , sans-serif ;
 	/*color:#bdc3c7;*/
-	color:#e67e22;
+	color:#ecf0f1;
 	font-size:80pt;
 	font-weight:10px;
 	text-align:center;
 	/*text-shadow: 0px 0px 4px black;*/
-	margin-top:20%;
+	margin-top:16%;
 }
 
-.Sunrise {
+.Sunspot {
 	font-family: 'Roboto' , sans-serif ;
 	/*color:#bdc3c7;*/
-	color:#e67e22;
+	color:#ecf0f1;
 	font-size:20pt;
 	font-weight:10px;
+	margin-top:50px;
+	text-align:center;
+	margin-bottom:10px;
 }
 
 #form {
@@ -57,7 +61,38 @@ input {
 }
 
 button {
-		font-family: 'Roboto' , sans-serif ;
-
+	font-family: 'Roboto' , sans-serif ;
 	font-size:30pt;
+}
+
+#changeAddress {
+	font-size:15pt;
+}
+.Sunrise {
+	text-align:center;
+	height: 70vh;
+	margin:0;
+	padding:0;
+}
+
+hr {
+	border-color:#ecf0f1;
+}
+
+#sun {
+	position:relative;
+	padding: 0px;
+	display:inline-block;
+	font-size:50pt;
+	text-align:center;
+	animation: load8 10s infinite linear;
+	transition: top 1000ms linear
+}
+
+#time {
+	position:relative;
+	font-size:30pt;
+	color:#ecf0f1;
+	font-family: 'Roboto' , sans-serif;
+	transition: top 1000ms linear
 }

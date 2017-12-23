@@ -1,19 +1,63 @@
 import React from 'react';
+import $ from 'jquery';
 
 class Visualizer extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			params: this.props.address
+			params: this.props.address,
+			time: '00 00 00',
+			height: -50
 		}
+	}
+	componentDidMount() {
+		var SecondsTohhmmss = function(totalSeconds) {
+			  var hours   = Math.floor(totalSeconds / 3600);
+			  var minutes = Math.floor((totalSeconds - (hours * 3600)) / 60);
+			  var seconds = totalSeconds - (hours * 3600) - (minutes * 60);
+
+			  // round seconds
+			  seconds = Math.round(seconds * 100) / 100
+
+			  var result = (hours < 10 ? "0" + hours : hours);
+			      result += " " + (minutes < 10 ? "0" + minutes : minutes);
+			      result += " " + (seconds  < 10 ? "0" + seconds : seconds);
+  			return result;
+		}
+
+		var landHeight = $('.Sunrise').height();
+
+		var sunrise = Date.parse(this.state.params.results.sunrise)/1000
+		var sunset = (Date.parse(this.state.params.results.sunset))/1000
+		console.log('time until sunset', sunset)
+		console.log('time from sunrise',sunrise)
+
+		setInterval(() => {
+			var currentTime = Math.round((Date.parse(new Date().toISOString()))/1000)
+			var timer = sunset - currentTime
+			var newHeight = timer/(sunset-sunrise)
+			var pixels = ($('.Sunrise').height() * (1-newHeight))
+			this.setState({
+				time: SecondsTohhmmss(timer),
+				height: pixels-50
+			})
+		},1000)
+
 	}
 
 
 	render () {
 		return (
+			<div>
+			<button id="changeAddress" onClick={this.props.refresh}>Change Address</button>
+			<div className="Sunspot">{'Sunset for ' + this.state.params.address}</div>
+			<br></br>
 			<div className="Sunrise">
-			<div>{'Sunset for ' + this.state.params.address}</div>
-			<button onClick={this.props.refresh}>Change Address</button>
+				<hr></hr>
+				<span id="sun" style={{top: this.state.height + 'px'}}>☀️</span>
+				<span id="time" style={{top: this.state.height + 'px'}}>{this.state.time}</span>
+			</div>
+			<hr></hr>
 			</div>
 		)
 	}

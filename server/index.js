@@ -20,7 +20,7 @@ app.get('/sunrise', function(req, res) {
     }
  	  if(res.statusCode === 200) {
         body = JSON.parse(body)
-        console.log(body.results)
+        console.log(body)
  			if(body.results.length) {
 	 			var result = {
 	 				address: body.results[0].formatted_address,
@@ -28,11 +28,13 @@ app.get('/sunrise', function(req, res) {
 	 			}
  			}
  		}
+    if (result) {
  		var params = {
  			url: 'https://api.sunrise-sunset.org/json',
  			qs: {
  			lat: result.coordinates.lat,
- 			lng: result.coordinates.lng
+ 			lng: result.coordinates.lng,
+      formatted: 0
  			}
  		}
  		request(params, function(err, response, body) {
@@ -46,6 +48,9 @@ app.get('/sunrise', function(req, res) {
  			}
 
  		})
+  } else {
+    res.end()
+  }
  	})
 })
 
