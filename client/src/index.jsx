@@ -22,7 +22,7 @@ class App extends React.Component {
       this.setState({
         loading:false
       })
-    },50)
+    },1000)
   }
 
   changeAddress(query) {
@@ -47,7 +47,7 @@ class App extends React.Component {
           this.setState({
             loading:false
           })
-        },50)
+        },1000)
       },
 
     })
